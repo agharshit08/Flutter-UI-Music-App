@@ -32,4 +32,28 @@ List<Song> songs = [
     image: "assets/images/love.jpg",
     artist: 'Paperwhite'
   ),
+  Song(
+    id: 5,
+    songName: 'Let it go',
+    image: "assets/images/colors.jpg",
+    artist: 'Demi'
+  ),
+  Song(
+    id: 6,
+    songName: 'Found you',
+    image: "assets/images/relax.jpg",
+    artist: 'Austin'
+  ),
+  Song(
+    id: 7,
+    songName: 'Shallow',
+    image: "assets/images/color.jpg",
+    artist: 'Lady Gaga'
+  ),
+  Song(
+    id: 8,
+    songName: 'Photograph',
+    image: "assets/images/party.jpg",
+    artist: 'Peter'
+  ),
 ];

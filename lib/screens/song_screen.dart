@@ -4,6 +4,8 @@ import 'package:music_app/constants.dart';
 class SongScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    print(25/size.width);
     return Scaffold(
       backgroundColor: kSecondaryColor,
       appBar: AppBar(
@@ -42,7 +44,7 @@ class SongScreen extends StatelessWidget {
           children: [
             Container(
               margin: EdgeInsets.symmetric(vertical: 30.0, horizontal: 20.0),
-              height: 300,
+              height: size.height*0.5,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20.0),
                 image: DecorationImage(
@@ -117,34 +119,35 @@ class SongScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Padding(
+            Container(
+              margin: const EdgeInsets.symmetric(vertical: 10.0),
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Icon(
                     Icons.playlist_add,
-                    size: 25,
+                    size: 0.09*size.width,
                     color: kLightColor,
                   ),
                   Icon(
                     Icons.skip_previous,
-                    size: 40,
+                    size:  0.12*size.width,
                     color: kPrimaryColor,
                   ),
                   Icon(
                     Icons.play_circle_outline,
                     color: kPrimaryColor,
-                    size: 60,
+                    size: 0.18*size.width,
                   ),
                   Icon(
                     Icons.skip_next,
-                    size: 40,
+                    size:  0.12*size.width,
                     color: kPrimaryColor,
                   ),
                   Icon(
                     Icons.swap_horiz,
-                    size: 25,
+                    size: 0.09*size.width,
                     color: kLightColor,
                   ),
                 ],

@@ -40,10 +40,10 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Column(
         children: [
           Container(
-            height: 0.67 * size.height,
+            height: 0.75 * size.height,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [_buildNavigationRail(), _buildPlaylistAndSongs()],
+              children: [_buildNavigationRail(), _buildPlaylistAndSongs(size)],
             ),
           ),
           _buildCurrentPlayingSong(size),
@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
         Navigator.pushNamed(context, '/song');
       },
       child: Container(
-        height: 0.11 * (size.height),
+        height: 0.09 * (size.height),
         padding: EdgeInsets.symmetric(horizontal: 40.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
@@ -115,25 +115,25 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Column _buildPlaylistAndSongs() {
+  Column _buildPlaylistAndSongs(Size size) {
     return Column(
       children: <Widget>[
         Container(
-          height: 230.0,
-          width: 300.0,
+          height: 0.35*size.height,
+          width: size.width*0.8,
           // color: Colors.purple,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: playlists.length,
             itemBuilder: (context, index) => _buildPlaylistItem(
               image: playlists[index].image,
-              title: playlists[index].playlistName,
+              title: playlists[index].playlistName
             ),
           ),
         ),
         Container(
-          height: 175,
-          width: 300,
+          height: 0.40*size.height,
+          width: size.width*0.8,
           child: ListView.builder(
             itemCount: songs.length,
             itemBuilder: (context, index) => _buildSonglistItem(
@@ -156,7 +156,7 @@ class _HomeScreenState extends State<HomeScreen> {
           _selectedIndex = index;
         });
       },
-      groupAlignment: 0.4,
+      groupAlignment: -0.1,
       labelType: NavigationRailLabelType.all,
       leading: Column(
         children: [
