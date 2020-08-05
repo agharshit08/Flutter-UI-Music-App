@@ -5,7 +5,6 @@ class SongScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    print(25/size.width);
     return Scaffold(
       backgroundColor: kSecondaryColor,
       appBar: AppBar(
@@ -43,7 +42,7 @@ class SongScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              margin: EdgeInsets.symmetric(vertical: 30.0, horizontal: 20.0),
+              margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
               height: size.height*0.5,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20.0),

@@ -40,26 +40,27 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Column(
         children: [
           Container(
-            height: 0.75 * size.height,
+            height: 0.72 * size.height,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [_buildNavigationRail(), _buildPlaylistAndSongs(size)],
             ),
           ),
           _buildCurrentPlayingSong(size),
-          _buildBottomBar()
+          _buildBottomBar(size)
         ],
       ),
     );
   }
 
   GestureDetector _buildCurrentPlayingSong(Size size) {
+    print(80/size.height);
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, '/song');
       },
       child: Container(
-        height: 0.09 * (size.height),
+        height: size.height*0.103,
         padding: EdgeInsets.symmetric(horizontal: 40.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
@@ -119,21 +120,20 @@ class _HomeScreenState extends State<HomeScreen> {
     return Column(
       children: <Widget>[
         Container(
-          height: 0.35*size.height,
-          width: size.width*0.8,
+          height: 0.35 * size.height,
+          width: size.width * 0.8,
           // color: Colors.purple,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: playlists.length,
             itemBuilder: (context, index) => _buildPlaylistItem(
-              image: playlists[index].image,
-              title: playlists[index].playlistName
-            ),
+                image: playlists[index].image,
+                title: playlists[index].playlistName),
           ),
         ),
         Container(
-          height: 0.40*size.height,
-          width: size.width*0.8,
+          height: 0.35 * size.height,
+          width: size.width * 0.8,
           child: ListView.builder(
             itemCount: songs.length,
             itemBuilder: (context, index) => _buildSonglistItem(
@@ -206,107 +206,109 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Expanded _buildBottomBar() {
-    return Expanded(
+  Container _buildBottomBar(Size size) {
+    print(50/size.height);
+    return Container(
+      height: size.height*0.065,
+      color: kSecondaryColor,
       child: Container(
-        color: kSecondaryColor,
-        child: Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(50),
-                topRight: Radius.circular(50),
-              ),
-              color: kWhiteColor),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Icon(
-                Icons.home,
-                color: kLightColor,
-              ),
-              Icon(
-                Icons.search,
-                color: kLightColor,
-              ),
-              Icon(
-                Icons.playlist_play,
-                color: kLightColor,
-              ),
-              Icon(
-                Icons.favorite_border,
-                color: kLightColor,
-              ),
-            ],
-          ),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(50),
+              topRight: Radius.circular(50),
+            ),
+            color: kWhiteColor),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Icon(
+              Icons.home,
+              color: kLightColor,
+            ),
+            Icon(
+              Icons.search,
+              color: kLightColor,
+            ),
+            Icon(
+              Icons.playlist_play,
+              color: kLightColor,
+            ),
+            Icon(
+              Icons.favorite_border,
+              color: kLightColor,
+            ),
+          ],
         ),
       ),
     );
   }
-}
 
-Widget _buildPlaylistItem({String title, String image}) {
-  return Container(
-    margin: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
-    width: 220,
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(20.0),
-      image: DecorationImage(image: AssetImage(image), fit: BoxFit.fill),
-      // color: Colors.orange,
-    ),
-    child: Align(
-      alignment: Alignment.bottomCenter,
-      child: Row(
-        children: [
-          Padding(
-            padding: EdgeInsets.all(12.0),
-            child: Text(
-              title,
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  color: Colors.white),
-            ),
-          ),
-          Expanded(
-              child: Container(
-            height: 0,
-          )),
-          Container(
-            height: 30,
-            width: 30,
-            margin: EdgeInsets.all(10.0),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0), color: Colors.white),
-            child: Icon(
-              Icons.play_circle_outline,
-              color: kPrimaryColor,
-            ),
-          )
-        ],
-      ),
-    ),
-  );
-}
-
-Widget _buildSonglistItem({String image, String title, String subtitle}) {
-  return ListTile(
-    title: Text(
-      title,
-      style: TextStyle(color: kPrimaryColor),
-    ),
-    subtitle: Text(
-      subtitle,
-      style: TextStyle(color: kLightColor),
-    ),
-    leading: Container(
-      height: 50,
-      width: 50,
+  Widget _buildPlaylistItem({String title, String image}) {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+      width: 220,
       decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(image),
-            fit: BoxFit.fill,
-          ),
-          borderRadius: BorderRadius.circular(10.0)),
-    ),
-  );
+        borderRadius: BorderRadius.circular(20.0),
+        image: DecorationImage(image: AssetImage(image), fit: BoxFit.fill),
+        // color: Colors.orange,
+      ),
+      child: Align(
+        alignment: Alignment.bottomCenter,
+        child: Row(
+          children: [
+            Padding(
+              padding: EdgeInsets.all(12.0),
+              child: Text(
+                title,
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    color: Colors.white),
+              ),
+            ),
+            Expanded(
+                child: Container(
+              height: 0,
+            )),
+            Container(
+              height: 30,
+              width: 30,
+              margin: EdgeInsets.all(10.0),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0),
+                  color: Colors.white),
+              child: Icon(
+                Icons.play_circle_outline,
+                color: kPrimaryColor,
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSonglistItem({String image, String title, String subtitle}) {
+    return ListTile(
+      title: Text(
+        title,
+        style: TextStyle(color: kPrimaryColor),
+      ),
+      subtitle: Text(
+        subtitle,
+        style: TextStyle(color: kLightColor),
+      ),
+      leading: Container(
+        height: 50,
+        width: 50,
+        decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(image),
+              fit: BoxFit.fill,
+            ),
+            borderRadius: BorderRadius.circular(10.0)),
+      ),
+    );
+  }
+
 }
